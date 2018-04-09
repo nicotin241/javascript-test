@@ -68,3 +68,5 @@ let s = "It was  a dark and stormy  night.";
 let words = s.split(/\W+/).filter(word => word.length >= 3);
 words.sort((a,b) => a.length - b.length);
 console.log(words);
+
+//new test line
