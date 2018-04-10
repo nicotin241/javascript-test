@@ -1,3 +1,4 @@
+//map
 let vals = [4,8,1,2,9];
 console.log(vals);
 
@@ -10,12 +11,14 @@ function doubler(x){
 let vals2 = vals.map(x => x * 2);
 console.log(vals2);
 
+//fill
 vals.fill(0);
 console.log(vals);
 
 let array = Array(100).fill().map(() => Math.random());
 console.log(array);
 
+//reduce
 vals = [5, 4, 9, 1, 2];
 let sum = 0;
 
@@ -38,11 +41,12 @@ let biggest = vals.reduce((acc, val) => val > acc ? val : acc);
 console.log(biggest);
 
 
-
+//filter
 
 let filtered = vals.filter(x => (x % 2) !== 0);
 console.log(filtered);
 
+//sort
 
 let obs = [{
     name: "first",
@@ -69,4 +73,49 @@ let words = s.split(/\W+/).filter(word => word.length >= 3);
 words.sort((a,b) => a.length - b.length);
 console.log(words);
 
-//new test 2
+//classes
+
+class User{
+
+    constructor(username, email, password){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+
+        if(User.counter === undefined){
+            User.counter = 1;
+        }else{
+            User.counter++;
+        }
+    }
+
+    static countUsers(){
+        console.log("There are "+ User.counter+" users");
+    }
+
+    register(){
+        console.log(this.username+" is now registered");
+    }
+}
+
+let bob = new User("bob","bob@email.com","1245");
+let dave = new User("dave","dave.mail.de","asdfv");
+bob.register();
+
+User.countUsers();
+
+
+class Member extends User{
+    constructor(username, email, password, memberPackage){
+        super(username, email, password);
+        this.package = memberPackage;
+    }
+
+    getPackage(){
+        console.log(this.username+" is subscribed to the "+this.package);
+    }
+}
+
+let mike = new Member("mike","mike@mail.de","234543","standard");
+mike.getPackage();
+mike.register();
