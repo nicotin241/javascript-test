@@ -1,10 +1,10 @@
 //map
-let vals = [4,8,1,2,9];
+let vals = [4, 8, 1, 2, 9];
 console.log(vals);
 
 
-function doubler(x){
-        return x * 2;
+function doubler(x) {
+    return x * 2;
 }
 
 //let vals2 = vals.map(doubler);
@@ -22,16 +22,16 @@ console.log(array);
 vals = [5, 4, 9, 1, 2];
 let sum = 0;
 
-for(let val of vals){
+for (let val of vals) {
     sum += val;
 }
 console.log(sum);
 
-let answer = vals.reduce((acc, val) =>  acc + val);
+let answer = vals.reduce((acc, val) => acc + val);
 console.log(answer);
 
-function findMax(acc, val){
-    if(val > acc){
+function findMax(acc, val) {
+    if (val > acc) {
         acc = val;
     }
     return acc;
@@ -53,12 +53,12 @@ let obs = [{
     x: 2,
     y: 10
 }, {
-name: "second",
+    name: "second",
     x: 5,
     y: 6
 }]
 
-function compare(a, b){
+function compare(a, b) {
     return a.x - b.x;
 }
 
@@ -70,52 +70,70 @@ console.log(names);
 
 let s = "It was  a dark and stormy  night.";
 let words = s.split(/\W+/).filter(word => word.length >= 3);
-words.sort((a,b) => a.length - b.length);
+words.sort((a, b) => a.length - b.length);
 console.log(words);
 
 //classes
 
-class User{
+class User {
 
-    constructor(username, email, password){
+    constructor(username, email, password) {
         this.username = username;
         this.email = email;
         this.password = password;
 
-        if(User.counter === undefined){
+        if (User.counter === undefined) {
             User.counter = 1;
-        }else{
+        } else {
             User.counter++;
         }
     }
 
-    static countUsers(){
-        console.log("There are "+ User.counter+" users");
+    static countUsers() {
+        console.log("There are " + User.counter + " users");
     }
 
-    register(){
-        console.log(this.username+" is now registered");
+    register() {
+        console.log(this.username + " is now registered");
     }
 }
 
-let bob = new User("bob","bob@email.com","1245");
-let dave = new User("dave","dave.mail.de","asdfv");
+let bob = new User("bob", "bob@email.com", "1245");
+let dave = new User("dave", "dave.mail.de", "asdfv");
 bob.register();
 
 User.countUsers();
 
 
-class Member extends User{
-    constructor(username, email, password, memberPackage){
+class Member extends User {
+    constructor(username, email, password, memberPackage) {
         super(username, email, password);
         this.package = memberPackage;
     }
 
-    getPackage(){
-        console.log(this.username+" is subscribed to the "+this.package);
+    getPackage() {
+        console.log(this.username + " is subscribed to the " + this.package);
     }
 }
 
-let mike = new Member("mike","mike@mail.de","234543","standard");
+let mike = new Member("mike", "mike@mail.de", "234543", "standard");
 mike.getPackage();
 mike.register();
+
+
+
+//working with dom and string methods
+
+//document.addEventListener("DOMContentLoaded", function () {
+
+function makeUpperCase(word){
+    return word.toUpperCase();
+}
+
+let name = "John";
+
+let template = `<h1>${makeUpperCase("Hello")}, ${name}</h1>
+    <p>This is a simpel test ...</p>`;
+
+document.getElementById("template").innerHTML = template;
+//});
