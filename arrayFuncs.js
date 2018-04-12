@@ -135,5 +135,37 @@ let name = "John";
 let template = `<h1>${makeUpperCase("Hello")}, ${name}</h1>
     <p>This is a simpel test ...</p>`;
 
-document.getElementById("template").innerHTML = template;
+//document.getElementById("template").innerHTML = template;
 //});
+
+//string methods
+
+let theString  = "Hello, my name is Nico and I love Javascript";
+
+//startsWith
+console.log("startsWith Hello: "+theString.startsWith("Hello"));
+console.log("startsWith ello: "+theString.startsWith("ello"));
+
+//endsWith
+console.log("endsWith Javascript: "+theString.endsWith("Javascript"));
+console.log("endsWith Java: "+theString.endsWith("Java"));
+//includes
+
+console.log("includes Nico: "+theString.includes("Nico"));
+console.log("includes Frank: "+theString.includes("Frank"));
+
+
+//number methods
+
+//Hex
+console.log("Hex: "+0XFF);
+//Bin
+console.log("Bin: "+0b101011);
+//octal
+console.log("Octo: "+0o543);
+
+console.log("isFinite: "+Number.isFinite(Infinity));
+
+console.log("isNan: "+Number.isNaN(NaN));
+
+console.log("isInteger: "+Number.isInteger(-2));
