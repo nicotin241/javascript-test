@@ -169,3 +169,78 @@ console.log("isFinite: "+Number.isFinite(Infinity));
 console.log("isNan: "+Number.isNaN(NaN));
 
 console.log("isInteger: "+Number.isInteger(-2));
+
+//default parameters
+
+function greet(greeting = "Hello World"){
+    console.log(greeting)
+}
+
+greet();
+greet("Hi");
+
+
+//spread operator
+
+let args = [1,2,3];
+
+function test(a,b,c){
+    console.log(a+","+b+","+c);
+}
+
+test(...args)
+
+
+//set
+
+let myArray = [11,22,333,12,543];
+let mySet = new Set(myArray);
+
+mySet.add("string");
+mySet.add({a: 1, b: 2});
+mySet.delete(22);
+//mySet.clear();
+
+console.log("mySet: "+mySet.size);
+
+mySet.forEach((val)=>console.log(val));
+
+//map
+
+let myMap = new Map([["a1","Hello"],["b2", "Goodbye"]]);
+myMap.set("c3", "Foo");
+myMap.delete("a1");
+
+console.log("Map size: "+myMap.size);
+
+
+//the weak counterparts allow garbage collection. When an object is created in a function and used as 
+//a key for the weak map, the key will be lost when returning from the function
+
+//weakSet
+let carWeakSet = new WeakSet();
+let car1 = {
+    make: "Honda",
+    model: "Civic"
+};
+
+carWeakSet.add(car1);
+
+console.log("WeakSet: "+carWeakSet);
+
+
+//weakMap
+
+let carWeakMap = new WeakMap();
+
+let key1 = {
+    id: 1
+}
+
+let car2 = {
+    make: "öasdf",
+    mode: "civic"
+};
+
+carWeakMap.set(key1,car2);
+
