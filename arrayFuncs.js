@@ -244,3 +244,101 @@ let car2 = {
 
 carWeakMap.set(key1,car2);
 
+//arrow functions
+
+function Prefixer(prefix){
+    this.prefix = prefix;
+}
+
+Prefixer.prototype.prefixArray = function(arr){
+    return arr.map((x) => {
+        console.log(this.prefix + x);
+    });
+}
+
+let pre = new Prefixer("Hello ");
+pre.prefixArray(["Brad","Jeff"]);
+
+
+//Promises (für Asynchrone sachen)
+
+//Immediately Resolved
+let myPromise = Promise.resolve("Foo");
+myPromise.then((res) => console.log(res));
+
+//after Timeout
+let myPromise2 = new Promise((resolve, reject) =>{
+    setTimeout(()=> resolve(4), 2000);
+});
+
+myPromise2.then((res)=>{
+    res += 3;
+    console.log(res);
+});
+
+//fetching data from api
+//has to be done in browser because xmlhttprequest is a build in object in the web browser
+function getData(method, url){
+    return new Promise((resolve, reject) =>{
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function(){
+            if(this.status >= 200 && this.status < 300){
+                resolve(xhr.response);
+            }else{
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function(){
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+
+getData("GET","http://jsonplaceholder.typicode.com/todos").then(function(data){
+    //console.log(data);
+    let todos = JSON.parse(data);
+    let output = "";
+    for(let todo of todos){
+        output += `
+        <li>
+            <h3>${todo.title}</h3>
+            <p>Completed: ${todo.completed} </p>
+        </li>
+        `;
+    }
+
+    document.getElementById("template").innerHTML = output;
+}).catch(function (err){
+    console.log(err);
+});
+
+//Generators (* markiert als generator)
+function *g1(){
+    console.log("Generator: "+"Hello");
+    yield "Yield 1 Ran..";
+    console.log("Generator: "+"World");
+    yield "Yield 2 Ran..";
+    return "Returned ..";
+}
+
+//generator needs to be set to a variable
+let g = g1();
+/*
+console.log(g.next().value);
+console.log(g.next());
+console.log(g.next());
+*/
+
+//for of doesnt include the return value!!
+for(let val of g){
+    console.log(val);
+}
+
