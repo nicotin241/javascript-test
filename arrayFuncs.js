@@ -1,3 +1,5 @@
+//@ts-check
+
 //map
 let vals = [4, 8, 1, 2, 9];
 console.log(vals);
@@ -15,7 +17,7 @@ console.log(vals2);
 vals.fill(0);
 console.log(vals);
 
-let array = Array(100).fill().map(() => Math.random());
+let array = Array(100).fill(0).map(() => Math.random());
 console.log(array);
 
 //reduce
